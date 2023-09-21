@@ -1,5 +1,5 @@
 import java.util.Scanner;
-    import java.util.Scanner;
+
     public class TipCalculator {
         public static void main(String [] args) {
             Scanner scan = new Scanner (System.in) ;
@@ -7,8 +7,9 @@ import java.util.Scanner;
             String name = scan.nextLine();
             System.out.println("Welcome " + name);
             System.out.print("How many people are in your party? " );
+            int people = scan.nextInt();
+            System.out.println("Tip percentage: ");
 
 
         }
     }
-}
