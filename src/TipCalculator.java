@@ -12,14 +12,36 @@ import java.util.Scanner;
             System.out.print("What percent would you like to tip? ");
             int percentTip = scan.nextInt();
             System.out.println(percentTip + "% Tip");
-            System.out.println("Please enter the cost of an item. If you are done, type -1. ");
+            System.out.println("Please enter the cost of an item in dollars and cents. If you are done, enter -1. ");
             double itemCost = scan.nextDouble();
             double totalBill = 0;
             totalBill = totalBill + itemCost;
-            while (itemCost > 0) {
-                itemCost = scan.nextDouble();
-                totalBill = totalBill + itemCost;
+            if (itemCost > 0) {
+                while (itemCost > 0) {
+                    itemCost = scan.nextFloat();
+                    totalBill = totalBill + itemCost;
+                }
+            } else {
+                if (itemCost < 0) {
+                    if (itemCost > -1) {
+                        System.out.println("Invalid input amount.");
+                        totalBill = (-1 * itemCost) + totalBill;
+                        itemCost = 0.01;
+                    }
+                } else {
+                    if (itemCost < -1) {
+                        System.out.println("Invalid input amount.");
+                        totalBill = (-1 * itemCost) + totalBill;
+                        itemCost = 0.01;
+                    }
+                }
             }
-            System.out.println("Your total is: $" + totalBill);
+
+            if (itemCost == -1) {
+                totalBill = (-1 * itemCost) + totalBill;
+                itemCost = 0.01;
+                totalBill = ((int)((totalBill + 0.005) * 100)) / 100;
+            }
+            System.out.println("The total cost of your items are: $" + totalBill);
         }
     }
