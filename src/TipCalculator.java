@@ -35,9 +35,13 @@ import java.util.Scanner;
             double totalCostOfItems = 0;
                 if (itemCost > 0) {
                     while (itemCost > 0) {
-                        itemCost = (double) ((int)((itemCost * 100) + 0.005)) / 100;
+                        itemCost = (double) ((int)((itemCost + 0.005) * 100)) / 100;
                         totalCostOfItems = totalCostOfItems + itemCost;
-                        System.out.println("Rounded cost to nearest cent: $" + itemCost);
+                        if (itemCost - 0.01 < ((int)(itemCost * 10)) / 10.0) {
+                            System.out.println("Rounded cost to nearest cent: $" + itemCost + "0");
+                        } else {
+                            System.out.println("Rounded cost to nearest cent: $" + itemCost);
+                        }
                         itemCost = 0.01;
                         itemCost = scan.nextDouble();
                     }
@@ -60,26 +64,71 @@ import java.util.Scanner;
                     }
                 }
             }
-            double tip = ((int)((totalCostOfItems * (percentTip / 100) + 0.005) * 100)) /100;
+            double tip = (double) ((int) ((totalCostOfItems * ((double) percentTip / 100) + 0.005) * 100)) / 100;
             double totalBill = totalCostOfItems + tip;
-            double costPerPerson = ((int)((totalCostOfItems / people) * 100)) /100;
-            double tipPerPerson = ((int)(((tip / people) + 0.005) * 100) / 100);
-            double totalCostPerP = costPerPerson + tipPerPerson;
+            double costPerPerson = ((int)((totalCostOfItems / people) * 100)) /100.0;
+            double tipPerPerson = ((int)(((tip / people) + 0.005) * 100) / 100.0);
+            double totalCostPerP = ((int)(((costPerPerson + tipPerPerson) + 0.005) * 100) / 100.0);
 
+            // prints receipt border
             System.out.println("------------------------------------------------");
+
+            // prints name
             System.out.println("Name: " + name);
+
+            // prints people
             System.out.println("Guests: " + people);
-            System.out.println("Total Cost of Items: $" + totalCostOfItems);
-            System.out.println("Tip Percentage: " + percentTip);
-            System.out.println("Tip: $" + tip);
-            System.out.println("Total Bill: $" + totalBill);
-            System.out.println("Cost Per Person Without Tip: $" + costPerPerson);
-            System.out.println("Tip Per Person: $" + tipPerPerson);
-            System.out.println("Total Cost Per Person:" + totalCostPerP);
+
+            System.out.println( );
+
+            // prints totalCostOfItems with two decimal places
+            if (totalCostOfItems - 0.01 < ((int)(totalCostOfItems * 10)) / 10.0) {
+                System.out.println("Total Cost of Items: $" + totalCostOfItems + "0");
+            } else {
+                System.out.println("Total Cost of Items: $" + totalCostOfItems);
+            }
+
+            // prints percentTip
+            System.out.println("Tip Percentage: " + percentTip + "%");
+
+            // prints tip with two decimal places
+            if (tip - 0.01 < ((int)(tip * 10)) / 10.0) {
+                System.out.println("Tip: $" + tip + "0");
+            } else {
+                System.out.println("Tip: $" + tip);
+            }
+
+            // prints totalBill with two decimal places
+            if (totalBill - 0.01 < ((int)(totalBill * 10)) / 10.0) {
+                System.out.println("Total Bill: $" + totalBill + "0");
+            } else {
+                System.out.println("Total Bill: $" + totalBill);
+            }
+
+            System.out.println( );
+
+            // prints costPerPerson with two decimal places
+            if (costPerPerson - 0.01 < ((int)(costPerPerson * 10)) / 10.0) {
+                System.out.println("Cost Per Person Without Tip: $" + costPerPerson + "0");
+            } else {
+                System.out.println("Cost Per Person Without Tip: $" + costPerPerson);
+            }
+
+            // prints tipPerPerson with two decimal places
+            if (tipPerPerson - 0.01 < ((int)(tipPerPerson * 10)) / 10.0) {
+                System.out.println("Tip Per Person: $" + tipPerPerson + "0");
+            } else {
+                System.out.println("Tip Per Person: $" + tipPerPerson);
+            }
+
+            // prints tipPerPerson with two decimal places
+            if (totalCostPerP - 0.01 < ((int)(totalCostPerP * 10)) / 10.0) {
+                System.out.println("Total Cost Per Person: $" + totalCostPerP + "0");
+            } else {
+                System.out.println("Total Cost Per Person: $" + totalCostPerP);
+            }
+
+            // prints receipt border
             System.out.println("------------------------------------------------");
-
-
-
-
         }
     }
