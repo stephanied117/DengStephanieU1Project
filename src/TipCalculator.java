@@ -8,40 +8,57 @@ import java.util.Scanner;
             System.out.println("Welcome, " + name + "!");
             System.out.print("How many people are in your party? ");
             int people = scan.nextInt();
-            System.out.println(people + " guests");
+            if (people <= 0) {
+                while (people <= 0) {
+                    people = 1;
+                    System.out.println("Invalid input: positive integers only");
+                    people = scan.nextInt();
+                }
+            }
+            if (people > 0) {
+                System.out.println(people + " guests");
+            }
             System.out.print("What percent would you like to tip? ");
             int percentTip = scan.nextInt();
-            System.out.println(percentTip + "% Tip");
+            if (percentTip <= 0) {
+                while (percentTip <= 0) {
+                    percentTip = 1;
+                    System.out.println("Invalid input: pick an integer between 1 and 100");
+                    percentTip = scan.nextInt();
+                }
+            }
+            if (percentTip > 0) {
+                System.out.println(percentTip + "% Tip");
+            }
             System.out.println("Please enter the cost of an item in dollars and cents. If you are done, enter -1. ");
             double itemCost = scan.nextDouble();
             double totalBill = 0;
-            totalBill = totalBill + itemCost;
             if (itemCost > 0) {
                 while (itemCost > 0) {
-                    itemCost = scan.nextFloat();
+                    itemCost = (double) ((int) ((itemCost * 100) + 0.005)) / 100;
                     totalBill = totalBill + itemCost;
+                    System.out.println("Rounded cost to nearest cent: $" + itemCost);
+                    itemCost = scan.nextDouble();
                 }
-            } else {
-                if (itemCost < 0) {
+            }
+            if (itemCost <= 0) {
+                while (itemCost <= 0) {
                     if (itemCost > -1) {
-                        System.out.println("Invalid input amount.");
-                        totalBill = (-1 * itemCost) + totalBill;
                         itemCost = 0.01;
+                        System.out.println("Invalid input: must be a positive amount in dollars and cents");
+                        itemCost = scan.nextDouble();
                     }
-                } else {
                     if (itemCost < -1) {
-                        System.out.println("Invalid input amount.");
-                        totalBill = (-1 * itemCost) + totalBill;
                         itemCost = 0.01;
+                        System.out.println("Invalid input: must be a positive amount in dollars and cents");
+                        itemCost = scan.nextDouble();
                     }
                 }
+                if (itemCost == -1) {
+                    totalBill = (-1 * itemCost) + totalBill;
+                    itemCost = 0.01;
+                    System.out.println("The total cost of your items are: $" + totalBill);
+                }
             }
-
-            if (itemCost == -1) {
-                totalBill = (-1 * itemCost) + totalBill;
-                itemCost = 0.01;
-                totalBill = ((int)((totalBill + 0.005) * 100)) / 100;
-            }
-            System.out.println("The total cost of your items are: $" + totalBill);
         }
     }
