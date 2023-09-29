@@ -35,7 +35,7 @@ import java.util.Scanner;
             double totalCostOfItems = 0;
                 if (itemCost > 0) {
                     while (itemCost > 0) {
-                        itemCost = (double) ((int)((itemCost * 100) + 0.005)) / 100;
+                        itemCost = (double) ((int)((itemCost + 0.005) * 100)) / 100;
                         totalCostOfItems = totalCostOfItems + itemCost;
                         System.out.println("Rounded cost to nearest cent: $" + itemCost);
                         itemCost = 0.01;
@@ -60,12 +60,13 @@ import java.util.Scanner;
                     }
                 }
             }
-            double tip = ((int)((totalCostOfItems * (percentTip / 100) + 0.005) * 100)) /100;
+            double tip = ((int)((totalCostOfItems * (percentTip / 100)) * 100) / 100);
             double totalBill = totalCostOfItems + tip;
             double costPerPerson = ((int)((totalCostOfItems / people) * 100)) /100;
             double tipPerPerson = ((int)(((tip / people) + 0.005) * 100) / 100);
             double totalCostPerP = costPerPerson + tipPerPerson;
 
+            //receipt
             System.out.println("------------------------------------------------");
             System.out.println("Name: " + name);
             System.out.println("Guests: " + people);
@@ -75,7 +76,7 @@ import java.util.Scanner;
             System.out.println("Total Bill: $" + totalBill);
             System.out.println("Cost Per Person Without Tip: $" + costPerPerson);
             System.out.println("Tip Per Person: $" + tipPerPerson);
-            System.out.println("Total Cost Per Person:" + totalCostPerP);
+            System.out.println("Total Cost Per Person: $" + totalCostPerP);
             System.out.println("------------------------------------------------");
 
 
