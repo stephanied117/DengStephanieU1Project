@@ -103,7 +103,7 @@ public class TipCalculator {
                 double tipPerPerson = ((int)(((tip / people) + 0.005) * 100) / 100.0);
                 double totalCostPerP = ((int)(((costPerPerson + taxPerPerson + tipPerPerson) + 0.005) * 100) / 100.0);
                 System.out.println( );
-                System.out.println("Alright" + name + ", your receipt has been printed!");
+                System.out.println("Alright " + name + ", your receipt has been printed!");
                 System.out.println( );
                 // prints receipt border
                 System.out.println("------------------------------------------------");
